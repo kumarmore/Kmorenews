@@ -11,6 +11,9 @@ void main() {
     home: SplashScreen(),
     getPages: [
       GetPage(name: '/home', page: () => HomeView()),
+      GetPage(name: '/login', page: () => LoginView()),
+      GetPage(name: '/settings', page: () => SettingsView()),
+      GetPage(name: '/notifications', page: () => NotificationsView()),
     ],
   ));
 }
