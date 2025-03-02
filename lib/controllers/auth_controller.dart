@@ -1,4 +1,4 @@
-import 'package:get/get.rx.dart';
+import 'package:get/get.dart';
 
 class AuthController extends GetxController {
   RxBool isLoggedIn = false.obs;

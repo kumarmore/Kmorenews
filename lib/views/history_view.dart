@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.rx.dart';
+import 'package:get/get.dart';
 import 'package:animations/animations.dart';
 import '../controllers/history_controller.dart';
 import '../models/news_model.dart';
@@ -39,6 +39,25 @@ class HistoryView extends StatelessWidget {
                 child: ListTile(
                   title: Text(news.title),
                   subtitle: Text(news.description ?? ''),
+                  leading: news.image.isNotEmpty
+                      ? ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.network(
+                      news.image,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: 50,
+                          height: 50,
+                          color: Colors.grey[300],
+                          child: Center(child: Text('No Image')),
+                        );
+                      },
+                    ),
+                  )
+                      : null,
                 ),
               ),
               openBuilder: (context, action) => NewsDetailView(news: news),

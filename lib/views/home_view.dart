@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.rx.dart';
+import 'package:get/get.dart';
 import 'package:animations/animations.dart';
 import 'package:share_plus/share_plus.dart';
 import '../controllers/news_controller.dart';
@@ -102,7 +102,8 @@ class HomeView extends StatelessWidget {
                   newsController.changeCategory(category);
                   searchController.clear();
                   Get.back();
-                  Get.snackbar('Navigating', 'Switched to ${category.capitalizeFirst!}', snackPosition: SnackPosition.BOTTOM);
+                  Get.snackbar('Navigating', 'Switched to ${category.capitalizeFirst!}',
+                      snackPosition: SnackPosition.BOTTOM);
                 },
               )),
               Obx(
@@ -117,7 +118,8 @@ class HomeView extends StatelessWidget {
                 onTap: () {
                   Get.to(() => HistoryView());
                   Get.back();
-                  Get.snackbar('Navigating', 'Going to History screen', snackPosition: SnackPosition.BOTTOM);
+                  Get.snackbar('Navigating', 'Going to History screen',
+                      snackPosition: SnackPosition.BOTTOM);
                 },
               ),
               Obx(
@@ -130,7 +132,9 @@ class HomeView extends StatelessWidget {
                       Get.toNamed('/login');
                     }
                     Get.back();
-                    Get.snackbar('Navigating', authController.isLoggedIn.value ? 'Logged out' : 'Going to Login screen', snackPosition: SnackPosition.BOTTOM);
+                    Get.snackbar('Navigating',
+                        authController.isLoggedIn.value ? 'Logged out' : 'Going to Login screen',
+                        snackPosition: SnackPosition.BOTTOM);
                   },
                 ),
               ),
@@ -139,7 +143,8 @@ class HomeView extends StatelessWidget {
                 onTap: () {
                   Get.toNamed('/settings');
                   Get.back();
-                  Get.snackbar('Navigating', 'Going to Settings screen', snackPosition: SnackPosition.BOTTOM);
+                  Get.snackbar('Navigating', 'Going to Settings screen',
+                      snackPosition: SnackPosition.BOTTOM);
                 },
               ),
               ListTile(
@@ -147,7 +152,8 @@ class HomeView extends StatelessWidget {
                 onTap: () {
                   Get.toNamed('/notifications');
                   Get.back();
-                  Get.snackbar('Navigating', 'Going to Notifications screen', snackPosition: SnackPosition.BOTTOM);
+                  Get.snackbar('Navigating', 'Going to Notifications screen',
+                      snackPosition: SnackPosition.BOTTOM);
                 },
               ),
             ],

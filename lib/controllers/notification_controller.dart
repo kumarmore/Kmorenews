@@ -1,4 +1,4 @@
-import 'package:get/get.rx.dart';
+import 'package:get/get.dart';
 
 class NotificationController extends GetxController {
   RxInt unreadNotifications = 0.obs;

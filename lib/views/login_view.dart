@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.rx.dart';
+import 'package:get/get.dart';
 import '../controllers/auth_controller.dart';
 
 class LoginView extends StatelessWidget {
@@ -33,7 +33,8 @@ class LoginView extends StatelessWidget {
                   authController.login(username, password);
                   Get.back();
                 } else {
-                  Get.snackbar('Error', 'Please enter username and password', snackPosition: SnackPosition.BOTTOM);
+                  Get.snackbar('Error', 'Please enter username and password',
+                      snackPosition: SnackPosition.BOTTOM);
                 }
               },
               child: Text('Login'),

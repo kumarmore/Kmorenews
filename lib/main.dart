@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.rx.dart';
+import 'package:g_news/views/history_view.dart';
+import 'package:g_news/views/login_view.dart';
+import 'package:g_news/views/notifications_view.dart';
+import 'package:g_news/views/settings_view.dart';
+import 'package:get/get.dart';
 import 'views/home_view.dart';
 
 void main() {
@@ -14,6 +18,7 @@ void main() {
       GetPage(name: '/login', page: () => LoginView()),
       GetPage(name: '/settings', page: () => SettingsView()),
       GetPage(name: '/notifications', page: () => NotificationsView()),
+      GetPage(name: '/history', page: () => HistoryView()),
     ],
   ));
 }
