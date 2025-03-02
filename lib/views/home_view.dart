@@ -6,13 +6,22 @@ import '../controllers/news_controller.dart';
 import '../models/news_model.dart';
 import '../controllers/theme_controller.dart';
 import '../controllers/history_controller.dart';
+import '../controllers/auth_controller.dart';
+import '../controllers/settings_controller.dart';
+import '../controllers/notification_controller.dart';
 import 'news_detail_view.dart';
 import 'history_view.dart';
+import 'login_view.dart';
+import 'settings_view.dart';
+import 'notifications_view.dart';
 
 class HomeView extends StatelessWidget {
   final NewsController newsController = Get.put(NewsController());
   final ThemeController themeController = Get.put(ThemeController());
   final HistoryController historyController = Get.put(HistoryController());
+  final AuthController authController = Get.put(AuthController());
+  final SettingsController settingsController = Get.put(SettingsController());
+  final NotificationController notificationController = Get.put(NotificationController());
   final List<String> categories = [
     'general',
     'sports',
@@ -68,16 +77,32 @@ class HomeView extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Get.isDarkMode ? Colors.purple[900] : Colors.purple,
                 ),
-                child: Text(
-                  'G News',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'G News',
+                      style: TextStyle(color: Colors.white, fontSize: 24),
+                    ),
+                    Obx(
+                          () => Text(
+                        authController.isLoggedIn.value
+                            ? 'Welcome, ${authController.userName.value}'
+                            : 'Guest',
+                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               ...categories.map((category) => ListTile(
                 title: Text(category.capitalizeFirst!),
                 onTap: () {
                   newsController.changeCategory(category);
+                  searchController.clear();
                   Get.back();
+                  Get.snackbar('Navigating', 'Switched to ${category.capitalizeFirst!}', snackPosition: SnackPosition.BOTTOM);
                 },
               )),
               Obx(
@@ -93,6 +118,36 @@ class HomeView extends StatelessWidget {
                   Get.to(() => HistoryView());
                   Get.back();
                   Get.snackbar('Navigating', 'Going to History screen', snackPosition: SnackPosition.BOTTOM);
+                },
+              ),
+              Obx(
+                    () => ListTile(
+                  title: Text(authController.isLoggedIn.value ? 'Logout' : 'Login'),
+                  onTap: () {
+                    if (authController.isLoggedIn.value) {
+                      authController.logout();
+                    } else {
+                      Get.toNamed('/login');
+                    }
+                    Get.back();
+                    Get.snackbar('Navigating', authController.isLoggedIn.value ? 'Logged out' : 'Going to Login screen', snackPosition: SnackPosition.BOTTOM);
+                  },
+                ),
+              ),
+              ListTile(
+                title: Text('Settings'),
+                onTap: () {
+                  Get.toNamed('/settings');
+                  Get.back();
+                  Get.snackbar('Navigating', 'Going to Settings screen', snackPosition: SnackPosition.BOTTOM);
+                },
+              ),
+              ListTile(
+                title: Text('Notifications'),
+                onTap: () {
+                  Get.toNamed('/notifications');
+                  Get.back();
+                  Get.snackbar('Navigating', 'Going to Notifications screen', snackPosition: SnackPosition.BOTTOM);
                 },
               ),
             ],
