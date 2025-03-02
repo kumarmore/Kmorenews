@@ -16,9 +16,10 @@ class NewsController extends GetxController {
 
   void fetchNews() async {
     try {
-      newsList.value = await _newsService.fetchNews(selectedCategory.value);
+      newsList.value = await _newsService.fetchNews(selectedCategory.value) ?? <NewsModel>[];
     } catch (e) {
       Get.snackbar('Error', 'Failed to load news: $e', snackPosition: SnackPosition.BOTTOM);
+      newsList.value = <NewsModel>[]; // Fallback to empty list
     }
   }
 
@@ -28,10 +29,11 @@ class NewsController extends GetxController {
       if (query.trim().isEmpty) {
         fetchNews();
       } else {
-        newsList.value = await _newsService.searchNews(query);
+        newsList.value = await _newsService.searchNews(query) ?? <NewsModel>[];
       }
     } catch (e) {
       Get.snackbar('Error', 'Failed to search news: $e', snackPosition: SnackPosition.BOTTOM);
+      newsList.value = <NewsModel>[]; // Fallback to empty list
     }
   }
 

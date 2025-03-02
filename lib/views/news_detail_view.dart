@@ -13,7 +13,8 @@ class NewsDetailView extends StatelessWidget {
   Future<void> _launchUrl(String url) async {
     final Uri uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
-      Get.snackbar('Error', 'Could not launch $url', snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar('Error', 'Could not launch $url',
+          snackPosition: SnackPosition.BOTTOM);
     }
   }
 
@@ -29,7 +30,8 @@ class NewsDetailView extends StatelessWidget {
             icon: Icon(Icons.share),
             onPressed: () {
               Share.share('${news.title}\n${news.url}');
-              Get.snackbar('Shared', 'News shared successfully', snackPosition: SnackPosition.BOTTOM);
+              Get.snackbar('Shared', 'News shared successfully',
+                  snackPosition: SnackPosition.BOTTOM);
             },
           ),
         ],
@@ -58,7 +60,7 @@ class NewsDetailView extends StatelessWidget {
                   errorBuilder: (context, error, stackTrace) {
                     return Container(
                       width: double.infinity,
-                      height: 200,
+                      height: 500,
                       color: Colors.grey[300],
                       child: Center(child: Text('Image not available')),
                     );

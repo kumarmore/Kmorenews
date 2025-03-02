@@ -1,4 +1,4 @@
-import 'dart:convert'; // Ensure this import is present for jsonEncode/jsonDecode
+import 'dart:convert';
 
 class NewsModel {
   final String title;
@@ -29,7 +29,6 @@ class NewsModel {
   }
 }
 
-// Extension for JSON serialization
 extension NewsModelExtension on NewsModel {
   Map<String, dynamic> toJson() {
     return {
