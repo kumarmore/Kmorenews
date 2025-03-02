@@ -7,6 +7,7 @@ import '../models/news_model.dart';
 import '../controllers/theme_controller.dart';
 import '../controllers/history_controller.dart';
 import 'news_detail_view.dart';
+import 'history_view.dart';
 
 class HomeView extends StatelessWidget {
   final NewsController newsController = Get.put(NewsController());
